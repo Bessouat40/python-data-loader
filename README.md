@@ -16,33 +16,19 @@ It takes all `csv files` from a directory and insert data inside database.
 
   > **Warning :** Port inside your `.env` file and inside `docker-compose.yaml` file must be the same !!!
 
-- Launch database :
+- Launch database and Python service :
 
   ```bash
   make start
   ```
 
-- Launch Python service :
-
-  ```bash
-  python fastapi_service/main.py
-  ```
-
 - Put your csv file(s) inside `data`folder and then run :
 
   ```bash
-  python test/test.py
+  python utils/ingest.py
   ```
 
-## Test
-
-Now you can call your Data Ingestor Service :
-
-### Run test
-
-```bash
-python test/test.py
-```
+**Now you can call your Data Ingestor Service !!!**
 
 ### Results
 
