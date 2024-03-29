@@ -14,8 +14,6 @@ It takes all `csv files` from a directory and insert data inside database.
 
 - Fill `.env` with your values
 
-  > **Warning :** Port inside your `.env` file and inside `docker-compose.yaml` file must be the same !!!
-
 - Launch database and Python service :
 
   ```bash
@@ -43,10 +41,10 @@ We found 3 csv files to process
 -------------------------
 
 
-2 lines from .../data-ingestor-service/test/test.csv inserted into test
-.../data-ingestor-service/fastapi_service/postgresIngestor.py:57: UserWarning: We can't add data from .../data-ingestor-service/test/test2.csv, columns doesn't match tables from public schema...
+2 lines from .../data-ingestor-service/data/test.csv inserted into test
+.../data-ingestor-service/fastapi_service/postgresIngestor.py:57: UserWarning: We can't add data from .../data-ingestor-service/data/test2.csv, columns doesn't match tables from public schema...
   warnings.warn(f"We can't add data from {path}, columns doesn't match tables from {SCHEMA} schema...")
-2 lines from .../data-ingestor-service/test/test_copy.csv inserted into test
+2 lines from .../data-ingestor-service/data/test_copy.csv inserted into test
 
 
 -------------------------
