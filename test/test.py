@@ -1,8 +1,8 @@
 import requests
 
-def fetch_api_data(api_url, params):
+def fetch_api_data(api_url):
     try:
-        response = requests.post(api_url, json=params)
+        response = requests.get(api_url)
         if response.status_code == 200:
             print('ok')
         else:
@@ -13,8 +13,7 @@ def fetch_api_data(api_url, params):
         return None
 
 api_path = "http://localhost:8000/ingest"
-params = {'path': "path_to_your_test_folder"}
-data = fetch_api_data(api_path, params)
+data = fetch_api_data(api_path)
 if data:
     print(data)
 else:

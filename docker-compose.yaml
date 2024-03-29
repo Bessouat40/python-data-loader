@@ -1,15 +1,17 @@
 version: '3'
 services:
-  # backend:
-  #   platform: linux/amd64
-  #   restart: unless-stopped
-  #   env_file:
-  #     - .env
-  #   build:
-  #     context: ./fastapi_service
-  #     dockerfile: ./Dockerfile
-  #   ports:
-  #     - '8000:8000'
+  backend:
+    platform: linux/amd64
+    restart: unless-stopped
+    env_file:
+      - .env
+    build:
+      context: ./fastapi_service
+      dockerfile: ./Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - ${DATA_FOLDER}:/data
 
   postgresDB:
     image: postgres

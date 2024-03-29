@@ -28,23 +28,23 @@ It takes all `csv files` from a directory and insert data inside database.
   python fastapi_service/main.py
   ```
 
+- Put your csv file(s) inside `data`folder and then run :
+
+  ```bash
+  python test/test.py
+  ```
+
 ## Test
 
 Now you can call your Data Ingestor Service :
 
-Line 17 of `test/test.py` file, change this line :
-
-```python
-params = {'path': "path_to_your_test_folder"}
-```
-
-Then run :
+### Run test
 
 ```bash
 python test/test.py
 ```
 
-### Result
+### Results
 
 ```bash
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

@@ -18,7 +18,7 @@ app.add_middleware(
 class IngestDataRequest(BaseModel):
     path: str
 
-@app.post('/ingest')
-async def get_data(request: IngestDataRequest):
-    pgIngestor.ingest_data(request.path)
+@app.get('/ingest')
+async def get_data():
+    pgIngestor.ingest_data()
     return Response(status_code=200)

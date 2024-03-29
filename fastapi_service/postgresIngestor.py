@@ -12,6 +12,7 @@ POSTGRES_DB=environ.get("POSTGRES_DB")
 HOST=environ.get("API_HOST")
 PORT=environ.get("PORT")
 SCHEMA=environ.get("SCHEMA")
+DATA_FOLDER="/data"
 
 class PostgresIngestor:
 
@@ -56,10 +57,10 @@ class PostgresIngestor:
         else :
             warnings.warn(f"We can't add data from {path}, columns doesn't match tables from {SCHEMA} schema...")
 
-    def ingest_data(self, path):
+    def ingest_data(self):
         print("---------- Start Data Ingestion ----------")
         self.nbr_insert = 0
-        csv_list = self.get_data_list(path)
+        csv_list = self.get_data_list(DATA_FOLDER)
         print('\n')
         print(f'We found {len(csv_list)} csv files to process')
         print('\n')
