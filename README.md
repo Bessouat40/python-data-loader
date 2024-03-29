@@ -38,11 +38,13 @@ Line 17 of `test/test.py` file, change this line :
 params = {'path': "path_to_your_test_folder"}
 ```
 
+Then run :
+
 ```bash
 python test/test.py
 ```
 
-### Result :
+### Result
 
 ```bash
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
