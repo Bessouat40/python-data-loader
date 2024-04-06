@@ -16,17 +16,18 @@ services:
   postgresDB:
     image: postgres
     restart: unless-stopped
-    container_name: ${API_HOST}
+    container_name: ${PG_HOST}
     env_file:
       - .env
     ports:
-      - 5432:${PORT}
+      - 5432:${PG_PORT}
     volumes:
       - ./db:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    container_name: ${ELASTIC_HOST}
     environment:
       - bootstrap.memory_lock=true
       - discovery.type=single-node
@@ -36,7 +37,9 @@ services:
         hard: -1
     mem_limit: 1g
     ports:
-      - 9200:9200
+      - 9200:${ELASTIC_PORT}
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.15.1

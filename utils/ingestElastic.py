@@ -12,7 +12,7 @@ def fetch_api_data(api_url):
         print(f"Error occured : {e}")
         return None
 
-api_path = "http://localhost:8000/ingest"
+api_path = "http://localhost:8000/ingestElastic"
 data = fetch_api_data(api_path)
 if data:
     print(data)

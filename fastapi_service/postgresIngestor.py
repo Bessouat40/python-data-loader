@@ -9,10 +9,10 @@ load_dotenv(find_dotenv())
 POSTGRES_USER=environ.get("POSTGRES_USER")
 POSTGRES_PASSWORD=environ.get("POSTGRES_PASSWORD")
 POSTGRES_DB=environ.get("POSTGRES_DB")
-HOST=environ.get("API_HOST")
-PORT=environ.get("PORT")
+HOST=environ.get("PG_HOST")
+PORT=environ.get("PG_PORT")
 SCHEMA=environ.get("SCHEMA")
-DATA_FOLDER="/data"
+DATA_FOLDER="/data/postgres"
 
 class PostgresIngestor:
 
@@ -61,15 +61,12 @@ class PostgresIngestor:
         print("---------- Start Data Ingestion ----------")
         self.nbr_insert = 0
         csv_list = self.get_data_list(DATA_FOLDER)
-        print('\n')
-        print(f'We found {len(csv_list)} csv files to process')
-        print('\n')
+        print(f'\nWe found {len(csv_list)} csv files to process\n')
         print("-" * 25)
         print('\n')
         [self.put_csv(csv) for csv in csv_list]
         print('\n')
         print("-" * 25)
         print('\n')
-        print(f"Total : {self.nbr_insert} inserted lines")
-        print('\n')
+        print(f"Total : {self.nbr_insert} inserted lines\n")
         print("---------- End Data Ingestion ----------")

@@ -10,5 +10,6 @@ RUN pip install -r /requirements.txt
 COPY ./api.py .
 COPY ./main.py .
 COPY ./postgresIngestor.py .
+COPY ./elasticIngestor.py .
 
 CMD python3 main.py

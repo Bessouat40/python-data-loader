@@ -14,21 +14,21 @@ It takes all `csv files` from a directory and insert data inside database.
 
 - Fill `.env` with your values
 
-- Launch database and Python service :
+- Launch databases and Python service :
 
   ```bash
   make start
   ```
 
-- Put your csv file(s) inside `data`folder and then run :
+## Postgres Service
+
+- Put your csv file(s) inside `data/postgres`folder and then run :
 
   ```bash
-  python utils/ingest.py
+  python utils/ingestPg.py
   ```
 
-**Now you can call your Data Ingestor Service !!!**
-
-### Results
+### Results Postgres
 
 ```bash
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
@@ -55,4 +55,33 @@ Total : 4 inserted lines
 
 ---------- End Data Ingestion ----------
 INFO:     127.0.0.1:64419 - "POST /ingest HTTP/1.1" 200 OK
+```
+
+## Elastic Service
+
+- Put your documents inside `data/elastic`folder and then run :
+
+  ```bash
+  python utils/ingestElastic.py
+  ```
+
+### Results Elastic
+
+```bash
+data-ingestor-service-backend-1  | ---------- Start Data Ingestion ----------
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  | We found 2 documents to process
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  | -------------------------
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  | -------------------------
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  | Total : 2 documents inserted
+data-ingestor-service-backend-1  |
+data-ingestor-service-backend-1  | ---------- End Data Ingestion ----------
+data-ingestor-service-backend-1  | INFO:     192.168.0.1:61372 - "GET /ingestElastic HTTP/1.1" 200 OK
 ```

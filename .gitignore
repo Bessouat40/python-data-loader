@@ -1,5 +1,6 @@
-*.ipynb
+test.ipynb
 db/*
 .env
 .DS_Store
 **/__pycache__/
+esdata/*
