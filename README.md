@@ -1,8 +1,9 @@
 # Data Ingestor Service
 
-This project is a python service for data ingestion into a `Postgres` database.
+This project is a python service for data ingestion inside a `Postgres` database and inside an `Elastic`.
 
-It takes all `csv files` from a directory and insert data inside database.
+- **Postgres :** It takes all `csv files` from `data/postgres` and insert data inside database,
+- **Elastic :** It takes all documents from `data/elastic` and insert them inside elastic.
 
 ## Usage
 
