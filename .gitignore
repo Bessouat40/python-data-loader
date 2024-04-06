@@ -1,4 +1,4 @@
-test.ipynb
+*.ipynb
 db/*
 .env
 .DS_Store
