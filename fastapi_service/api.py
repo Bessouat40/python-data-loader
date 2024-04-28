@@ -27,5 +27,5 @@ async def get_data():
 
 @app.get('/ingestElastic')
 async def get_data():
-    elasticIngestor.ingest_data()
+    elasticIngestor.ingest_data(function=None)
     return Response(status_code=200)

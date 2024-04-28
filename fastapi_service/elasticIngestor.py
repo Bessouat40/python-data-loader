@@ -47,10 +47,12 @@ class ElasticIngestor:
         else:
             return 0
 
-            
-    def index_document(self, document_path, document_id):
+    def index_document(self, document_path, document_id, function = None):
         try :
-            document_embedding = self.read_document(document_path)
+            if function :
+                document_embedding = function(document_path)
+            else :
+                document_embedding = self.read_document(document_path)
             doc = {
                 "document_id": document_id,
                 "document_embedding": document_embedding,
@@ -61,7 +63,7 @@ class ElasticIngestor:
         except Exception as e :
             warnings.warn(f"Error occured : {e}")
 
-    def ingest_data(self):
+    def ingest_data(self, function = None):
         print("---------- Start Data Ingestion ----------")
         self.nbr_insert = 0
         last_id = self.get_last_document_id()
@@ -69,7 +71,7 @@ class ElasticIngestor:
         print(f'\nWe found {len(documents)} documents to process\n')
         print("-" * 25)
         print('\n')
-        [self.index_document(doc, idx + last_id) for idx, doc in enumerate(documents)]
+        [self.index_document(doc, idx + last_id, function) for idx, doc in enumerate(documents)]
         print('\n')
         print("-" * 25)
         print('\n')
