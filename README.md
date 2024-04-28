@@ -5,6 +5,8 @@ This project is a python service for data ingestion inside a `Postgres` database
 - **Postgres :** It takes all `csv files` from `data/postgres` and insert data inside database,
 - **Elastic :** It takes all documents from `data/elastic` and insert them inside elastic.
 
+![schema](./media/schema.jpeg)
+
 ## Usage
 
 - Setup environment :
