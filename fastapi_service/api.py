@@ -6,7 +6,7 @@ from elasticIngestor import ElasticIngestor
 
 app = FastAPI()
 
-pgIngestor = PostgresIngestor()
+# pgIngestor = PostgresIngestor()
 elasticIngestor = ElasticIngestor()
 
 app.add_middleware(
@@ -20,10 +20,10 @@ app.add_middleware(
 class IngestDataRequest(BaseModel):
     path: str
 
-@app.get('/ingestPostgres')
-async def get_data():
-    pgIngestor.ingest_data()
-    return Response(status_code=200)
+# @app.get('/ingestPostgres')
+# async def get_data():
+#     pgIngestor.ingest_data()
+#     return Response(status_code=200)
 
 @app.get('/ingestElastic')
 async def get_data():

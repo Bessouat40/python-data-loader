@@ -4,24 +4,11 @@ import warnings
 from elasticsearch import Elasticsearch
 import base64
 
-import torch
-from PIL import Image
-import open_clip
-
-torch.manual_seed(42)
-
 load_dotenv(find_dotenv())
 
-# ELASTIC_PORT=environ.get("ELASTIC_PORT")
-# ELASTIC_HOST=environ.get("ELASTIC_HOST")
-# DATA_FOLDER="/data/elastic"
-
-ELASTIC_PORT="9200"
-ELASTIC_HOST="0.0.0.0"
-DATA_FOLDER="./data/elastic"
-
-model, _, preprocess = open_clip.create_model_and_transforms('ViT-B-32', pretrained='laion2b_s34b_b79k')
-tokenizer = open_clip.get_tokenizer('ViT-B-32')
+ELASTIC_PORT=environ.get("ELASTIC_PORT")
+ELASTIC_HOST=environ.get("ELASTIC_HOST")
+DATA_FOLDER="/data/elastic"
 
 class ElasticIngestor:
 
@@ -63,16 +50,12 @@ class ElasticIngestor:
     def index_document(self, document_path, document_id, function = None):
         try :
             if function :
-                custom_embeding = function(document_path)
+                document_embedding = function(document_path)
             else :
-                custom_embeding = None
-            clip_embedding = encode_image_with_clip(document_path)
-            document_embedding = self.read_document(document_path)
+                document_embedding = self.read_document(document_path)
             doc = {
                 "document_id": document_id,
                 "document_embedding": document_embedding,
-                "clip_embedding": clip_embedding,
-                "custom_embedding": custom_embeding,
                 "extension": document_path.split('/')[-1].split(".")[-1]
             }
             self.client.index(index="document", id=document_id, body=doc)
@@ -94,10 +77,3 @@ class ElasticIngestor:
         print('\n')
         print(f"Total : {self.nbr_insert} documents inserted\n")
         print("---------- End Data Ingestion ----------")
-
-def encode_image_with_clip(image_path):
-    image = preprocess(Image.open(image_path)).unsqueeze(0)
-    with torch.no_grad(), torch.cuda.amp.autocast():
-        image_features = model.encode_image(image)
-    image_features /= image_features.norm(dim=-1, keepdim=True)
-    return base64.b64encode(image_features.cpu().numpy().tobytes()).decode("utf-8")

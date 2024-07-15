@@ -14,7 +14,4 @@ def fetch_api_data(api_url):
 
 api_path = "http://localhost:8000/ingestPostgres"
 data = fetch_api_data(api_path)
-if data:
-    print(data)
-else:
-    print("No data to display")
+print('done')
